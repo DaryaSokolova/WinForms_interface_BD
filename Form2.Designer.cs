@@ -225,6 +225,7 @@ namespace WinFormsApp1
             // 
             this.textBox8.Location = new System.Drawing.Point(283, 659);
             this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(228, 35);
             this.textBox8.TabIndex = 27;
             // 
