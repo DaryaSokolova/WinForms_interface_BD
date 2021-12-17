@@ -76,8 +76,10 @@ namespace WinFormsApp1
             this.label19 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -150,6 +152,7 @@ namespace WinFormsApp1
             // 
             this.textBox5.Location = new System.Drawing.Point(283, 219);
             this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(228, 35);
             this.textBox5.TabIndex = 11;
             // 
@@ -313,6 +316,7 @@ namespace WinFormsApp1
             // 
             this.textBox2.Location = new System.Drawing.Point(283, 448);
             this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(228, 35);
             this.textBox2.TabIndex = 33;
             // 
@@ -412,6 +416,7 @@ namespace WinFormsApp1
             // 
             this.textBox12.Location = new System.Drawing.Point(1177, 494);
             this.textBox12.Name = "textBox12";
+            this.textBox12.ReadOnly = true;
             this.textBox12.Size = new System.Drawing.Size(228, 35);
             this.textBox12.TabIndex = 36;
             // 
@@ -498,11 +503,23 @@ namespace WinFormsApp1
             this.label20.TabIndex = 49;
             this.label20.Text = "Найти пересечение с Facultet:";
             // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(523, 55);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersWidth = 72;
+            this.dataGridView2.RowTemplate.Height = 37;
+            this.dataGridView2.Size = new System.Drawing.Size(242, 262);
+            this.dataGridView2.TabIndex = 50;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1641, 881);
+            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.label19);
@@ -547,9 +564,11 @@ namespace WinFormsApp1
             this.Controls.Add(this.textBox1);
             this.Name = "Form2";
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -604,5 +623,6 @@ namespace WinFormsApp1
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.DataGridView dataGridView2;
     }
 }

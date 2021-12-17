@@ -92,10 +92,8 @@ namespace WinFormsApp1
         {
             if (dataGridView1.Rows.Count > 0)
             {
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                {
-                    dataGridView1.Rows.RemoveAt(i);
-                }
+                dataGridView2.Rows.Clear();
+                dataGridView2.Refresh();
             }
 
             if (dataGridView1.Columns.Count < 1)
@@ -241,6 +239,9 @@ namespace WinFormsApp1
             int idRow = dataGridView1.SelectedCells[0].RowIndex;
             object idUniversity = dataGridView1.Rows[idRow].Cells[0].Value;
 
+            textBox12.Text = idUniversity.ToString();
+            textBox2.Text = idUniversity.ToString();
+
             Form frm = new Form4(idUniversity);
             frm.Show();
         }
@@ -301,6 +302,68 @@ namespace WinFormsApp1
         {
             Form frm = new Form5();
             frm.Show();
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            if (dataGridView2.Rows.Count > 0)
+            {
+                dataGridView2.Rows.Clear();
+                dataGridView2.Refresh();
+            }
+
+            if (dataGridView1.Columns.Count < 1)
+            {
+                dataGridView2.Columns.Add("Passport", "Passport");
+                dataGridView2.Columns.Add("Surname", "Surname");
+                dataGridView2.Columns.Add("NameOfTeacher", "NameOfTeacher");
+                dataGridView2.Columns.Add("Patronymic", "Patronymic");
+            }
+
+            string connectionString = @"Data Source = .\SQL_EXPRESS;Initial Catalog=finSql; Integrated Security = True";
+
+            string sqlExpression = "SELECT * FROM Teacher";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows) // если есть данные
+                {
+
+                    int counter = 0;
+                    while (reader.Read()) // построчно считываем данные
+                    {
+                        dataGridView2.ReadOnly = true;
+                        object id = reader.GetValue(0);
+                        object surname = reader.GetValue(1);
+                        object name = reader.GetValue(2);
+                        object patronymic = reader.GetValue(3);
+
+                        dataGridView2.Rows.Add();
+                        dataGridView2.Rows[counter].Cells[0].Value = id;
+                        dataGridView2.Rows[counter].Cells[1].Value = surname;
+                        dataGridView2.Rows[counter].Cells[2].Value = name;
+                        dataGridView2.Rows[counter].Cells[3].Value = patronymic;
+
+                        counter++;
+                    }
+                }
+
+                reader.Close();
+            }
+
+            Console.Read();
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int idRow = dataGridView2.SelectedCells[0].RowIndex;
+            object passport = dataGridView2.Rows[idRow].Cells[0].Value;
+
+            textBox5.Text = passport.ToString();
+            textBox8.Text = passport.ToString();
         }
     }
 }
